@@ -88,13 +88,15 @@ endfunction "}}}
 
 function! ghcmod#util#check_version(version) "{{{
   let l:ghc_mod_version = ghcmod#util#ghc_mod_version()
-  for l:i in range(0, 2)
-    if a:version[l:i] > l:ghc_mod_version[l:i]
-      return 0
-    elseif a:version[l:i] < l:ghc_mod_version[l:i]
-      return 1
-    endif
-  endfor
+  if !empty(l:ghc_mod_version)
+    for l:i in range(0, 2)
+      if a:version[l:i] > l:ghc_mod_version[l:i]
+        return 0
+      elseif a:version[l:i] < l:ghc_mod_version[l:i]
+        return 1
+      endif
+    endfor
+  endif
   return 1
 endfunction "}}}
 
